@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ProductSchema } from "~/lib/schemas";
+import { CreateProduct, ProductSchema, ServerCreateProductSchema } from "~/lib/schemas";
 
 import {
   createTRPCRouter,
@@ -10,7 +10,7 @@ import {
 export const productRouter = createTRPCRouter({
 
   create: protectedProcedure
-    .input(ProductSchema)
+    .input(ServerCreateProductSchema)
     .mutation(async ({ ctx, input }) => {
       // simulate a slow db call
     //   await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -32,4 +32,41 @@ export const productRouter = createTRPCRouter({
         },
       });
     }),
+
+    getAll: publicProcedure
+    .query(async({ctx}) => {
+
+      return ctx.db.product.findMany({
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          images: true,
+          price: true,
+        }
+      })
+    },
+    ),
+    deleteProduct: protectedProcedure
+    .input(z.string())
+    .mutation(async ({ctx,input})=>{
+
+      return ctx.db.product.delete({
+        where: {
+          id: input,
+        },
+      });
+    }
+
+    ),
+    getOneProduct: publicProcedure
+    .input(z.string())
+    .query(async({ctx,input})=>{
+
+      return ctx.db.product.findUnique({
+        where: {
+          id: input,
+        },
+      })
+    })
 });

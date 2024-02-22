@@ -2,18 +2,25 @@ import { z } from "zod";
 
 
 export const ProductSchema = z.object({
-    // id: z.string(),
+    id: z.string(),
     title: z.string(),
     description: z.string().optional(),
-    images: z.array(z.string()),
+    images: z.string(),
     price: z.number().default(100),
   });
 
 export const CreateProduct = z.object({
   title: z.string(),
   description: z.string().optional(),
-  images: z.array(z.string()),
-  price: z.number().default(100),
+  images: z.string(),
+  price: z.string(),
+});
+
+export const ServerCreateProductSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  images: z.string(),
+  price: z.number(),
 });
 
 // export const CreatePost = PostSchema.omit({ id: true });

@@ -6,6 +6,9 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { ourFileRouter } from "./api/uploadthing/uploadthing";
 import { extractRouterConfig } from "uploadthing/server";
 import TopNav from "./_components/NavBar";
+import Navbar from "./_components/NewNavBar/Navbar";
+import { SessionProvider } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,21 +21,22 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const  session = await getServerSession();
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-      {/* <TopNav/> */}
-
         <TRPCReactProvider>
-        {/* <NextSSRPlugin
-          routerConfig={extractRouterConfig(ourFileRouter)}
-        /> */}
-          {children}</TRPCReactProvider>
+        <SessionProvider session={session}>
+
+        <Navbar/>
+          {children}
+          </SessionProvider>
+          </TRPCReactProvider>
       </body>
     </html>
   );

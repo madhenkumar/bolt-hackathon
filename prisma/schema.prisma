@@ -48,7 +48,7 @@ model Product {
   id          String   @id @default(cuid())
   title       String
   description String?
-  images      String[]
+  images      String
 //   keywords    String[]
   
   price    Float @default(100)

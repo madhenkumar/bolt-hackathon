@@ -13,14 +13,10 @@ import { useUploadThing } from "~/utils/uploadthing";
 import { Input } from "~/components/ui/input";
 import { Skeleton } from "~/components/ui/skeleton";
 
-interface ImageObject {
-  image: string;
-  comment: string;
-}
 
 export function MultiUploader() {
   const [files, setFiles] = useState<File[]>([]);
-  const { images, setImages, updateImageComment } = useImageStore();
+  const { images, setImages } = useImageStore();
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [initialImages, setInitialImages] = useState<string[]>([]);
@@ -39,7 +35,7 @@ export function MultiUploader() {
       const images = e.map((image) => image.url);
       const imagesString = images.join(",");
       setInitialImages(images);
-      setImages(images.map((image) => ({ image: image, comment: "" })));
+      setImages(images.map((image) => (image)));
       setUploaded(true);
     },
     onUploadError: (e) => {
@@ -79,31 +75,18 @@ export function MultiUploader() {
       <input className="text-xl" disabled={loading} {...getInputProps()} />
       {uploaded || images.length > 0 ? (
         <div className="grid h-full w-full grid-cols-5 gap-4">
-          {images.map((image: ImageObject, index: number) => {
-            const handleCommentChange = (
-              e: React.ChangeEvent<HTMLInputElement>,
-            ) => {
-              updateImageComment(image.image, e.target.value);
-            };
+          {images.map((image: string, index: number) => {
             return (
               <div className="flex flex-col">
                 <Image
                   alt="trade-image-preview"
                   key={index}
-                  src={image.image}
+                  src={image}
                   width={200}
                   height={200}
                   priority={true}
                   loading="eager"
                   className="h-full w-full rounded-lg object-cover"
-                />
-                <Input
-                  className="mt-3 w-full"
-                  placeholder="Comment"
-                  type="text"
-                  value={images[index]?.comment} // Use optional chaining to handle potential undefined
-                  onClick={(e) => e.stopPropagation()} // Add this line to stop event propagation
-                  onChange={(e) => handleCommentChange(e)}
                 />
               </div>
             );
