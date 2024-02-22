@@ -5,6 +5,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ourFileRouter } from "./api/uploadthing/uploadthing";
 import { extractRouterConfig } from "uploadthing/server";
+import TopNav from "./_components/NavBar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
+      {/* <TopNav/> */}
+
         <TRPCReactProvider>
         {/* <NextSSRPlugin
           routerConfig={extractRouterConfig(ourFileRouter)}

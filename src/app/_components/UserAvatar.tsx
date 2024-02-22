@@ -1,3 +1,4 @@
+"use client"
 import { Avatar } from "~/components/ui/avatar";
 import type { User } from "next-auth";
 import Image from "next/image";
