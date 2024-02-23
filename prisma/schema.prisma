@@ -53,6 +53,8 @@ model Visited{
 }
 
 
+
+
 model Product {
   id          String  @id @default(cuid())
   title       String
