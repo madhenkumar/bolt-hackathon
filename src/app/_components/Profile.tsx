@@ -1,5 +1,7 @@
+import { getServerAuthSession } from "~/server/auth"
 
-export default function Profile() {
+export default async function Profile() {
+    const session = await getServerAuthSession();
     return (
       <div className="w-full py-6 space-y-6 lg:py-12">
         <div className="container grid max-w-2xl gap-6 px-4 md:gap-10 lg:grid-cols-profile lg:max-w-5xl xl:gap-14 xl:px-6">
@@ -9,7 +11,7 @@ export default function Profile() {
                 alt="Profile"
                 className="rounded-full object-cover"
                 height="128"
-                src="/placeholder.svg"
+                src={"/placeholder.svg"}
                 style={{
                   aspectRatio: "128/128",
                   objectFit: "cover",

@@ -103,5 +103,16 @@ export const productRouter = createTRPCRouter({
         console.log('Fitting picture not found for the user.');
         return null;
       }
-    })
+    }),
+    returnAllVisitedProducts: publicProcedure
+    .query(async({ctx})=>{
+      const user = await ctx.db.visited.findMany({
+        include: {
+          products: true // Include the fitting picture associated with the user
+        }
+      });
+  
+    }),
+
+
 });

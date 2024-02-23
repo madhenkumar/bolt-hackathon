@@ -46,7 +46,7 @@ export default function Navbar() {
             </div>
           ))}
 
-          {/* <SignStatus/> */}
+          <SignStatus/>
         </nav>
         
 

@@ -11,14 +11,14 @@ export default async function Home(){
     <>
     <Hero />
     <Newest/>
-    {/* <Link
+    <Link
               href='/api/auth/signin'
               className={buttonVariants({
                 variant: 'ghost',
               })}>
               Sign In
             </Link>
-            <p> {session?.user.name}</p> */}
+            <p> {session?.user.name}</p>
     </>
   );
 }
