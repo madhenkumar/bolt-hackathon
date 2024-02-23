@@ -74,7 +74,7 @@ const page = ({}) => {
                     <UploadButton
                       endpoint="imageUploader"
                       onClientUploadComplete={(res) => {
-                        form.setValue("image", res[0].url);
+                        form.setValue("image", res[0]!.url);
                         toast.success("Upload success");
                       }}
                       onUploadError={(error: Error) => {
