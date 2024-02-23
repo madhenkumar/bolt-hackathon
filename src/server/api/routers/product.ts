@@ -37,6 +37,8 @@ export const productRouter = createTRPCRouter({
     .query(async({ctx}) => {
 
       return ctx.db.product.findMany({
+        take: 8, // Limits the result to 8 products
+        orderBy: { createdAt: 'desc' },
         select: {
           id: true,
           title: true,
