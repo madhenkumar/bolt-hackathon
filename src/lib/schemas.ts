@@ -23,6 +23,10 @@ export const ServerCreateProductSchema = z.object({
   price: z.number(),
 });
 
+export const CreateFittingPicture = z.object({
+  image: z.string(),
+})
+
 // export const CreatePost = PostSchema.omit({ id: true });
 // export const UpdatePost = PostSchema;
 // export const DeletePost = PostSchema.pick({ id: true });

@@ -1,16 +1,29 @@
-"use client"
 import { Star, Truck } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import { Button, buttonVariants } from '~/components/ui/button'
-import { api } from '~/trpc/react'
+import { api } from '~/trpc/server'
 
 type Props = {
     id: string
 }
 
 export const EachProduct = (props: Props) => {
-    const data = api.product.getOneProduct.useQuery(props.id).data;
+    // const data = api.product.getOneProduct.query(props.id);
+    const exampleObject = {
+        id: "1",
+        title: "Orange T-shirt",
+        description: "This vibrant orange t-shirt features a classic round neck design.",
+        images: "https://utfs.io/f/edd1575a-b3d2-404d-b368-3e14ba46eb37-ujjlvi.jpg",
+        price: 800,
+        brandId: "Nike",
+        createdAt: new Date("2024-02-23T08:00:00Z"),
+        updatedAt: new Date("2024-02-23T08:30:00Z")
+      };
+
+    //   const fittingPicturePath = fittingPicture ?? 'public/intel1.jpg';
+
+
   return (
     <div className="md:py-8">
     <div className="mb-2 md:mb-3">
@@ -18,7 +31,7 @@ export const EachProduct = (props: Props) => {
         Men
       </span>
       <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl">
-        {data?.title}
+        {exampleObject.title}
       </h2>
     </div>
 
@@ -36,10 +49,11 @@ export const EachProduct = (props: Props) => {
     <div className="mb-4">
       <div className="flex items-end gap-2">
         <span className="text-xl font-bold text-gray-800 md:text-2xl">
-        {data?.price}
+        ${exampleObject.price}
         </span>
-        <span className="mb-0.5 text-red-500 line-through">
-         ${data?.price+30}
+        <span className="mb-0.5 text-red-500 line-through"> 
+            Price
+         ${exampleObject.price+30}
         </span>
       </div>
 
@@ -69,9 +83,12 @@ export const EachProduct = (props: Props) => {
       Check Out 
     </Link>
     </div>
+    <Button className="mt-2.5 px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600">
+    Try using Virtual Fitting Room
+    </Button>
 
     <p className="mt-12 text-base text-gray-500 tracking-wide">
-    {data?.description}
+    {exampleObject.description}
     </p>
   </div>
   )

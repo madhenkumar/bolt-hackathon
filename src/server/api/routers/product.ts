@@ -68,5 +68,40 @@ export const productRouter = createTRPCRouter({
           id: input,
         },
       })
+    }),
+
+    AddFittingPicture: protectedProcedure
+    .input(z.object({image:z.string()}))
+    .mutation(async({ctx,input})=>{
+      
+      return ctx.db.fittingPicture.create({
+        data: {
+          image: input.image,
+          user: {
+            connect: { id: ctx.session.user.id } // Associate with the user
+          }
+        }
+      })
+
+      ;
+    }
+      
+    ),
+
+    getFittingPicture: protectedProcedure
+    .query(async({ctx})=>{
+      const user = await ctx.db.user.findUnique({
+        where: { id: ctx.session.user.id },
+        include: {
+          fittingPicture: true // Include the fitting picture associated with the user
+        }
+      });
+  
+      if (user && user.fittingPicture) {
+        return user.fittingPicture.image; // Return the image URL of the fitting picture
+      } else {
+        console.log('Fitting picture not found for the user.');
+        return null;
+      }
     })
 });

@@ -7,8 +7,8 @@ import { ourFileRouter } from "./api/uploadthing/uploadthing";
 import { extractRouterConfig } from "uploadthing/server";
 import TopNav from "./_components/NavBar";
 import Navbar from "./_components/NewNavBar/Navbar";
-import { SessionProvider } from "next-auth/react";
-import { getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth";
+import SessionProvider from "./_components/SessionProvider";
 
 const inter = Inter({
   subsets: ["latin"],
