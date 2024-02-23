@@ -7,6 +7,11 @@ import { ShoppingBag } from "lucide-react";
 import NewUserAccountNav from "./NewUserAccountNav";
 
 
+// className={buttonVariants({
+//     variant: 'ghost',
+//     class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+// })}
+
 const SignStatus = () => {
 
     const session = useSession();
@@ -18,14 +23,13 @@ const SignStatus = () => {
                 {session?.status === 'authenticated' ? <NewUserAccountNav /> : (
                     <Link
                         href='/api/auth/signin'
-                        className={buttonVariants({
-                            variant: 'ghost',
-                        })}>
+                        className="text-lg font-semibold transition duration-100 text-blue-500 hover:text-blue-700"
+                       >
                         Sign In
                     </Link>
                 )}
 
-                {session?.status === 'authenticated' ? (
+                {/* {session?.status === 'authenticated' ? (
                     <span
                         className='h-6 w-px bg-gray-200'
                         aria-hidden='true'
@@ -39,9 +43,9 @@ const SignStatus = () => {
                             aria-hidden='true'
                         />
                     </div>
-                )}
+                )} */}
 
-                {session?.status === 'authenticated' ? (<div className='ml-4 flow-root lg:ml-6'>
+                {/* {session?.status === 'authenticated' ? (<div className='ml-4 flow-root lg:ml-6'>
                     <div className="flex divide-x border-r sm:border-l">
 
                         <ShoppingBag />
@@ -50,7 +54,7 @@ const SignStatus = () => {
                         </span>
 
                     </div>
-                </div>) : null}
+                </div>) : null} */}
 
 
 

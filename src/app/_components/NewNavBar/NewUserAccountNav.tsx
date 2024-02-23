@@ -1,5 +1,6 @@
 'use client'
 
+import { User } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 // import { User } from '@/payload-types'
 import Link from 'next/link'
@@ -19,7 +20,7 @@ const NewUserAccountNav = () => {
           variant='ghost'
           size='sm'
           className='relative'>
-          My account
+          <User className='text-gray-600 transition duration-100 hover:text-primary'/>
         </Button>
       </DropdownMenuTrigger>
 
