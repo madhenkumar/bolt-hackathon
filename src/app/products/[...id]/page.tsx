@@ -15,12 +15,12 @@ type Props = {
 };
 
 export default async function ProductPage({ params: { id } }: Props) {
+  const idObject = { id: id };
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="grid gap-8 md:grid-cols-2">
-          <ImageGallery />
-          <EachProduct id={id}/>
+          <EachProduct params={idObject}/>
         </div>
       </div>
     </div>

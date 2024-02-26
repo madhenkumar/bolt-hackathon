@@ -1,22 +1,26 @@
 import { Star, Truck } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import ImageGallery from '~/app/_components/ImageGallery'
 import { Button, buttonVariants } from '~/components/ui/button'
 import { api } from '~/trpc/server'
 
 type Props = {
-    id: string
-}
+  params: {
+    id: string;
+  };
+};
+export const EachProduct = ({ params: { id } }: Props) => {
 
-export const EachProduct = (props: Props) => {
-    // const data = api.product.getOneProduct.query(props.id);
+    const data = api.product.getOneProduct.query(id);
+    console.log(data);
     const exampleObject = {
         id: "1",
-        title: "Orange T-shirt",
-        description: "This vibrant orange t-shirt features a classic round neck design.",
-        images: "https://utfs.io/f/edd1575a-b3d2-404d-b368-3e14ba46eb37-ujjlvi.jpg",
-        price: 800,
-        brandId: "Nike",
+        title: "Jean Jacket",
+        description: "Introducing our timeless denim jacket, a wardrobe essential that seamlessly blends style and versatility.",
+        images: "https://utfs.io/f/1bdcc798-52d1-4cde-a061-da46d95cc2d7-jb6l2q.jpg",
+        price: 100000,
+        brandId: "Levi's",
         createdAt: new Date("2024-02-23T08:00:00Z"),
         updatedAt: new Date("2024-02-23T08:30:00Z")
       };
@@ -25,6 +29,11 @@ export const EachProduct = (props: Props) => {
 
 
   return (
+    <>
+    <div> 
+    <ImageGallery id={exampleObject.images} />
+
+    </div>
     <div className="md:py-8">
     <div className="mb-2 md:mb-3">
       <span className="mb-0.5 inline-block text-gray-500">
@@ -91,5 +100,6 @@ export const EachProduct = (props: Props) => {
     {exampleObject.description}
     </p>
   </div>
+  </>
   )
 }
