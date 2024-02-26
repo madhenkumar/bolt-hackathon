@@ -4,6 +4,7 @@ import { Button, buttonVariants } from "~/components/ui/button";
 import { getServerAuthSession } from "~/server/auth";
 import Hero from "./_components/Hero";
 import Newest from "./_components/Newest";
+import Chatbot from "~/components/ui/chatbot";
 
 export default async function Home(){
   const session = await getServerAuthSession();
@@ -20,7 +21,7 @@ export default async function Home(){
             </Link>
             <p> {session?.user.name}</p> */}
 
-    
+      <Chatbot />
     </>
   );
 }
