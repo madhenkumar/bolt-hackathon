@@ -92,9 +92,9 @@ export const EachProduct = ({ params: { id } }: Props) => {
       Check Out 
     </Link>
     </div>
-    <Button className="mt-2.5 px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600">
+    <Link href="/products/virtualfitting" className="mt-2.5 px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600">
     Try using Virtual Fitting Room
-    </Button>
+    </Link>
 
     <p className="mt-12 text-base text-gray-500 tracking-wide">
     {exampleObject.description}
